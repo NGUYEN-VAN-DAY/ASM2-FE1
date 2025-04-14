@@ -1,0 +1,183 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Cải thiện nút Thêm sản phẩm */
+.btn-custom {
+    background-color: #007bff; /* Màu xanh Bootstrap */
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px; /* Bo góc */
+    border: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3); /* Hiệu ứng bóng */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa icon và chữ */
+}
+
+/* Hover effect */
+.btn-custom:hover {
+    background-color: #0056b3; /* Màu xanh đậm hơn khi hover */
+    transform: translateY(-2px); /* Hiệu ứng nhấn */
+    box-shadow: 0 5px 10px rgba(0, 123, 255, 0.4);
+}
+
+/* Active (khi click) */
+.btn-custom:active {
+    background-color: #004494;
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+/* Định dạng icon */
+.btn-custom i {
+    font-size: 20px;
+}
+
+.breadcrumb {
+    list-style: none; /* Ẩn số thứ tự */
+    padding: 10px 15px;
+    display: flex; /* Hiển thị ngang */
+    align-items: center;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.breadcrumb-item {
+    font-size: 16px;
+    font-weight: 500;
+    color: #6c757d;
+    position: relative;
+    padding: 5px 12px;
+}
+
+/* Định dạng link */
+.breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Dấu phân cách "›" */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: #6c757d;
+    padding-right: 12px;
+    font-size: 16px;
+}
+
+/* Mục active */
+.breadcrumb-item.active {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Bố cục chung */
+.main-panel {
+    padding: 20px;
+}
+
+.content-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Breadcrumb */
+.page-breadcrumb {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Bảng sản phẩm */
+.table-product {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-product th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border: none;
+}
+
+.table-product td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-product tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Nút chỉnh sửa & xóa */
+.btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    width: 50px;
+    height: 40px;
+    background-color: #007bff;
+    border: none;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    width: 50px;
+    height: 40px;
+
+    background-color: #dc3545;
+    border: none;
+    display: inline-block;
+}
+
+.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+/* Căn chỉnh nút Sửa & Xóa */
+td:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Căn giữa thông báo */
+.text-center {
+    text-align: center;
+    font-weight: bold;
+    color: #dc3545;
+}
+//  ---------product
+  

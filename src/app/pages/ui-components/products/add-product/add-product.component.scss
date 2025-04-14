@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    padding: 40px; /* Tăng padding để form to hơn */
+    max-width: 750px; /* Tăng kích thước form */
+    margin: 50px auto; /* Căn giữa card */
+    border: 1px solid #ddd;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 14px;
+    border: 1px solid #ced4da;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px; /* Tăng kích thước chữ trong input */
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.1), inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+    background: #f9f9f9;
+}
+
+.btn {
+    padding: 16px 24px; /* Tăng kích thước nút */
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    width: auto;
+    min-width: 130px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.5);
+}
+#btn{
+
+}
+.btn-success {
+     background-color: #28a745;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.6);
+    opacity: 0.95;
+}
+
+.breadcrumb {
+    background: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.button-group {
+    // // display: flex;
+
+    // gap: 30px; /* Tăng khoảng cách giữa các nút */
+    // justify-content: center; /* Căn giữa các nút */
+}
