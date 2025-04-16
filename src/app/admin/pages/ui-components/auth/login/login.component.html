@@ -1,16 +1,90 @@
-<ng-alerts [messages]="alertMessages"></ng-alerts>
-<form [formGroup]="formData" (ngSubmit)="handleLogin()">
+ <ng-alerts [messages]="alertMessages"></ng-alerts>
+<!-- <form [formGroup]="formData" (ngSubmit)="handleLogin()">
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Example input placeholder">
+        <input type="email" class="form-control" id="email" formControlName="email"
+            placeholder="Example input placeholder">
         <span class="text-danger" *ngIf="email!.invalid && (email!.dirty || email!.touched)">Email is required</span>
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">password</label>
-        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Another input placeholder">
-        <span class="text-danger" *ngIf="password!.invalid && (password!.dirty || password!.touched)">Username is required</span>
+        <input type="password" class="form-control" id="password" formControlName="password"
+            placeholder="Another input placeholder">
+        <span class="text-danger" *ngIf="password!.invalid && (password!.dirty || password!.touched)">Username is
+            required</span>
     </div>
     <div class="mb-3">
         <button class="btn btn-primary" [disabled]="!formData.valid">Login</button>
     </div>
-</form>
+</form> -->
+<!-- --------------------------------------------------- -->
+<div class="">
+    <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+        <div class="col-lg-4 d-flex align-items-center">
+            <mat-card class="cardWithShadow boxed-auth">
+                <mat-card-content class="p-32">
+                    <div class="text-center">
+                        <a [routerLink]="['/dashboard']">
+                            <!-- <img src="./assets/images/logos/logo.svg" class="align-middle m-2 w-10" alt="logo" /> -->
+                        </a>
+                    </div>
+
+                    <div class="row m-t-24 custom-row">
+                        <div class="col-6">
+                            <button mat-stroked-button class="w-100">
+                                <div class="d-flex align-items-center">
+                                    <img src="/assets/images/svgs/google-icon.svg" alt="google" width="16" class="m-r-8" />
+                                    <span class="d-none d-lg-block"> Google</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button mat-stroked-button class="w-100 d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="/assets/images/svgs/facebook-icon.svg" alt="facebook" width="" class="m-r-4" />
+                                    <span class="d-none d-lg-block">Facebook</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="or-border m-t-30">Hoặc đăng nhập với</div>
+
+                    <form [formGroup]="formData" (ngSubmit)="handleLogin()" class="m-t-30">
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Email</mat-label>
+                        <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input formControlName="email" matInput />
+                            <span class="text-danger" *ngIf="email!.invalid && (email!.dirty || email!.touched)">Email
+                                is required</span>
+
+                        </mat-form-field>
+                        <!-- password -->
+                        <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Mật khẩu</mat-label>
+                        <mat-form-field appearance="outline" class="w-100" color="primary">
+                            <input formControlName="password" matInput type="password" />
+                            <span class="text-danger"
+                                *ngIf="password!.invalid && (password!.dirty || password!.touched)">Username is
+                                required</span>
+                        </mat-form-field>
+
+                        <div class="d-flex align-items-center m-b-12">
+                            <mat-checkbox color="primary">Nhớ mật khẩu</mat-checkbox>
+                            <a [routerLink]="['/']" class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">
+                                Quên mật khẩu</a>
+                        </div>
+                        <button [disabled]="!formData.valid" mat-flat-button color="primary" class="w-100">
+                            Đăng nhập
+                    </button>
+                        
+                        <!-- input -->
+                    </form>
+                    <span class="d-block f-w-500 text-center m-t-24">
+                        <a [routerLink]="['/authentication/register']"
+                            class="text-decoration-none text-primary f-w-50 f-s-14">
+                            Tạo tài khoản</a>
+                    </span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

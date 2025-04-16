@@ -6,9 +6,15 @@ import { AlertShowcaseComponent } from 'src/app/admin/common/alert.component';
 import { IAlertMessage } from 'src/app/admin/interface/alert-message.interface';
 import { AuthService } from 'src/app/admin/services/apis/auth.service';
 
+
+
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from 'src/app/material.module';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, AlertShowcaseComponent],
+  imports: [ReactiveFormsModule, CommonModule, AlertShowcaseComponent ,RouterModule,MaterialModule,FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

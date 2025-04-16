@@ -87,7 +87,7 @@ export const navItems: NavItem[] = [
         displayName: 'Login',
          subItemIcon: true,
         iconName: 'solar:round-alt-arrow-right-line-duotone',
-        route: '/authentication/login',
+        route: '/ui-components/login',
       },
     
     ],

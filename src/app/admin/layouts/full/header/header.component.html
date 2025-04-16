@@ -31,23 +31,23 @@
     <img src="/assets/images/profile/user-1.jpg" class="rounded-circle object-cover icon-35 profile-dd" width="35" />
   </button>
   <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
-    <button mat-menu-item>
+    <!-- <button mat-menu-item>
       <mat-icon class="d-flex align-items-center"><i data-icon="solar:shield-user-line-duotone"
           class="iconify icon-22"></i></mat-icon>My Profile
-    </button>
+    </button> -->
     <button mat-menu-item>
       <mat-icon class="d-flex align-items-center"><i data-icon="solar:user-id-line-duotone"
-          class="iconify icon-22"></i></mat-icon>My Account
+          class="iconify icon-22"></i></mat-icon>  Tài khoản của tôi
     </button>
-    <button mat-menu-item>
+    <!-- <button mat-menu-item>
       <mat-icon class="d-flex align-items-center"><i data-icon="solar:checklist-minimalistic-line-duotone"
           class="iconify icon-22"></i> </mat-icon>My Task
-    </button>
+    </button> -->
 
     <div class="p-x-12 m-t-12">
       <!-- <a [routerLink]="['/authentication/login']" mat-stroked-button class="w-100">Logout</a> -->
       <!-- Nút Logout -->
-      <button (click)="onLogout()" class="btn btn-dark">Logout</button>
+      <button (click)="onLogout()" class="btn btn-dark">Đăng xuất</button>
 
     </div>
   </mat-menu>
