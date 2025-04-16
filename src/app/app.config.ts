@@ -36,7 +36,9 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
-      withComponentInputBinding()
+      withComponentInputBinding(),
+      // provideClientHydration(withEventReplay()),
+    //  provideHttpClient(),
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideClientHydration(),
@@ -47,6 +49,10 @@ export const appConfig: ApplicationConfig = {
       MaterialModule,
       TablerIconsModule.pick(TablerIcons),
       NgScrollbarModule,
-    ),
+    ), provideAnimationsAsync(),
   ],
 };
+function withEventReplay(): import("@angular/platform-browser").HydrationFeature<import("@angular/platform-browser").HydrationFeatureKind> {
+  throw new Error('Function not implemented.');
+}
+

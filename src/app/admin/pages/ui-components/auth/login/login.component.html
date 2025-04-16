@@ -1,0 +1,16 @@
+<ng-alerts [messages]="alertMessages"></ng-alerts>
+<form [formGroup]="formData" (ngSubmit)="handleLogin()">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Example input placeholder">
+        <span class="text-danger" *ngIf="email!.invalid && (email!.dirty || email!.touched)">Email is required</span>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Another input placeholder">
+        <span class="text-danger" *ngIf="password!.invalid && (password!.dirty || password!.touched)">Username is required</span>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" [disabled]="!formData.valid">Login</button>
+    </div>
+</form>
