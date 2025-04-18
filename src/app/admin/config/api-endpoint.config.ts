@@ -11,5 +11,15 @@ export const API_ENDPOINT = {
     base: API_BASE_URL + '/' + 'categories',
     list: '/list',
     add: '/add',
+  }, 
+  user: {
+    base: API_BASE_URL + '/' + 'users',
+    list: '/list',
+    add: '/add',
+  },
+  product: {
+    base: API_BASE_URL + '/' + 'produts',
+    list: '/list',
+    add: '/add',
   }
 };

@@ -27,7 +27,7 @@ export class AddCategoryComponent {
   formData = new FormGroup({
     name: new FormControl('', [
       Validators.required,
-      Validators.minLength(6)
+      Validators.minLength(3)
     ]),
     image: new FormControl('', [
       Validators.required

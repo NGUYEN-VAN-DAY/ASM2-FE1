@@ -95,13 +95,13 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Đăng ký',
     iconName: 'solar:user-plus-rounded-line-duotone',
-    route: '/authentication',
+    route: '/ui-components',
     children: [
       {
         displayName: 'Register',
          subItemIcon: true,
         iconName: 'solar:round-alt-arrow-right-line-duotone',
-        route: '/authentication/register',
+        route: '/ui-components/register',
       },
      
     ],

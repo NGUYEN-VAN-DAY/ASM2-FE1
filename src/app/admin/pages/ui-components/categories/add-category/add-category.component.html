@@ -36,8 +36,7 @@
                                         <label for="categoryName" class="form-label">Tên danh mục:</label>
                                         <input formControlName="name" type="text" class="mb-3 form-control">
                                         <span class="text-danger"
-                                            *ngIf="name!.invalid &&(name!.dirty || name!.touched)">name is
-                                            required</span>
+                                            *ngIf="name!.invalid &&(name!.dirty || name!.touched)">Tên ngắn quá</span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoryImage" class="form-label">Ảnh:

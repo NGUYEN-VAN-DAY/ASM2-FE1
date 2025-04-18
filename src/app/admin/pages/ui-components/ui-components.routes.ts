@@ -17,6 +17,7 @@ import { AddCategoryComponent } from './categories/add-category/add-category.com
 import { UserListComponent } from './user-list/user-list.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -69,6 +70,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
       },
     ],
   },
