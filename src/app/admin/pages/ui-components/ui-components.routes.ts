@@ -75,6 +75,9 @@ export const UiComponentsRoutes: Routes = [
         path: 'register',
         component: RegisterComponent,
       },
+      { path: 'edit-product/:id', 
+        component: EditProductComponent }
+
     ],
   },
 ];

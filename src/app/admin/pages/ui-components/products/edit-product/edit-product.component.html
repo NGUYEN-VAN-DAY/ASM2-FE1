@@ -1,79 +1,91 @@
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="page-wrapper">
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">CHỈNH SỬA SẢN PHẨM</h4>
-                        <div class="ms-auto text-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a routerLink="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item"><a routerLink="/ui-components/categories">Danh sách sản
-                                            phẩm</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa sản phẩm</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Chỉnh sửa sản phẩm</h5>
-                                <form action="/ui-components/edit-category" method="POST" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="categoryName" class="form-label">Tên sản phẩm</label>
-                                        <input type="text" class="form-control" id="categoryName" name="categoryName"
-                                            value="Điện thoại cao cấp" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoryImage" class="form-label">Hình ảnh</label>
-                                        <input type="file" class="form-control" id="categoryImage" name="categoryImage">
-                                        <small class="text-muted">Ảnh hiện tại: <a href="/uploads/sample-image.jpg"
-                                                target="_blank">Xem ảnh</a></small>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="price" class="form-label">Giá</label>
-                                        <input type="text" class="form-control" id="price" name="price"
-                                            value="500000" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="sale-price" class="form-label">Giá giảm</label>
-                                        <input type="text" class="form-control" id="sale-price" name="sale-price"
-                                            value="4000" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoryStatus" class="form-label">Trạng thái</label>
-                                        <select class="form-control" id="categoryStatus" name="categoryStatus">
-                                            <option value="active" selected>Hoạt động</option>
-                                            <option value="inactive">Không hoạt động</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoryType" class="form-label">Loại</label>
-                                        <select class="form-control" id="categoryType" name="categoryType">
-                                            <option value="iphone" selected>iPhone</option>
-                                            <option value="samsung">Samsung</option>
-                                            <option value="oppo">Oppo</option>
-                                            <option value="xiaomi">Xiaomi</option>
-                                            <option value="vivo">Vivo</option>
-                                            <option value="realme">Realme</option>
-                                        </select>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-success">Lưu</button>
-                                    <a routerLink="/ui-components/categories" class="btn btn-secondary">Hủy</a>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <!-- Breadcrumb nếu cần -->
+          </div>
         </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">SỬA SẢN PHẨM</h4>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+                  <!-- Tên sản phẩm -->
+                  <div class="mb-3">
+                    <label class="form-label">Tên sản phẩm:</label>
+                    <input formControlName="title" type="text" class="form-control" />
+                  </div>
+  
+                  <!-- Mô tả -->
+                  <div class="mb-3">
+                    <label class="form-label">Mô tả:</label>
+                    <textarea formControlName="description" class="form-control"></textarea>
+                  </div>
+  
+                  <!-- Giá -->
+                  <div class="mb-3">
+                    <label class="form-label">Giá:</label>
+                    <input formControlName="price" type="number" class="form-control" />
+                  </div>
+  
+                  <!-- Giá khuyến mãi -->
+                  <div class="mb-3">
+                    <label class="form-label">Giá khuyến mãi:</label>
+                    <input formControlName="salePrice" type="number" class="form-control" />
+                  </div>
+  
+                  <!-- Trạng thái -->
+                  <div class="mb-3">
+                    <label class="form-label">Trạng thái:</label>
+                    <select formControlName="status" class="form-control">
+                      <option value="0">Ẩn</option>
+                      <option value="1">Hiển thị</option>
+                    </select>
+                  </div>
+  
+                  <!-- Danh mục -->
+                  <div class="mb-3">
+                    <label class="form-label">Danh mục:</label>
+                    <select formControlName="category_id" class="form-control">
+                      <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                      </option>
+                    </select>
+                  </div>
+  
+                  <!-- Mô tả dài -->
+                  <div class="mb-3">
+                    <label class="form-label">Mô tả dài:</label>
+                    <textarea formControlName="longDescription" class="form-control"></textarea>
+                  </div>
+  
+                  <!-- Ảnh -->
+                  <div class="mb-3">
+                    <label class="form-label">Ảnh sản phẩm:</label>
+                    <input type="file" (change)="onFileSelected($event)" class="form-control" />
+                    <div *ngIf="imageUploading" class="text-danger">Đang tải ảnh lên...</div>
+                    <div *ngIf="imageUrl" class="mt-2">
+                      <img [src]="imageUrl" alt="Ảnh sản phẩm" style="max-width: 200px;" />
+                    </div>
+                  </div>
+  
+                  <!-- Nút -->
+                  <div class="button-group">
+                    <button type="submit" class="btn btn-success" [disabled]="!formData.valid">Lưu thay đổi</button>
+                    <a routerLink="/ui-components/products" class="btn btn-secondary">Hủy</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

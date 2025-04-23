@@ -10,6 +10,7 @@ import { IProduct } from '../../interface/product.interface';
   providedIn: 'root'
 })
 export class productService extends ApiService {
+  [x: string]: any;
 
   constructor(
     protected _http: HttpClient,
@@ -31,7 +32,20 @@ export class productService extends ApiService {
       // withCredentials: true  // nếu dùng session-based
     });
   }
-
+  updateProduct(id: string | number, data: any): Observable<IProduct> {
+    const url = `${API_ENDPOINT.product.base}/${id}`;
+    console.log("Service data: ", data);  // Kiểm tra dữ liệu cập nhật
+    
+    return this._http.put<IProduct>(url, data, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+  getProductById(id: string | number): Observable<IProduct> {
+    const url = `${API_ENDPOINT.product.base}/${id}`;
+    return this._http.get<IProduct>(url, {
+      headers: this.getAuthHeaders(),
+    });
+  }
   addProducts(data: any): Observable<IProduct[]> {
     const url = API_ENDPOINT.product.base + API_ENDPOINT.product.add;
     return this._http.post<IProduct[]>(url, data, {

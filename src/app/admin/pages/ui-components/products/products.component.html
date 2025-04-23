@@ -96,8 +96,8 @@
 
 
                                                 <td class="d-flex justify-content-center align-items-center gap-2">
-                                                    <a routerLink="/ui-components/edit-product"
-                                                        class="btn btn-primary  ">Sửa</a>
+                                                    <a [routerLink]="['/ui-components/edit-product', p.id]" class="btn btn-primary">Sửa</a>
+
                                                     <button class="btn btn-danger"
                                                         (click)="openDialog(p.id, p.title)">Xóa</button>
 
