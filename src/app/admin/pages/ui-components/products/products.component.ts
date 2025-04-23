@@ -8,6 +8,7 @@ import { CategoryService } from 'src/app/admin/services/apis/category.service';
 import { DeleteCategoryComponent } from '../categories/delete-category/delete-category.component';
 import { IProduct } from 'src/app/admin/interface/product.interface';
 import { productService } from 'src/app/admin/services/apis/product.service';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
 
 @Component({
   selector: 'app-products',
@@ -33,12 +34,12 @@ list: IProduct[] = []
 
       },
       error: (err) => {
-        console.error('Error fetching categories:', err);
+        console.error('Error fetching products:', err);
       }
     })
   }
   openDialog(id: number, name: string): void {
-    const dialogRef = this.dialog.open(DeleteCategoryComponent, {
+    const dialogRef = this.dialog.open(DeleteProductComponent, {
       data: { name: name, id: id },
     });
 

@@ -9,6 +9,7 @@ import { API_ENDPOINT } from '../../config/api-endpoint.config';
   providedIn: 'root'
 })
 export class CategoryService extends ApiService {
+  [x: string]: any;
   constructor(protected _http: HttpClient) {
     super(_http);
   }

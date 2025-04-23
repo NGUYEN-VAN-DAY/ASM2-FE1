@@ -1,94 +1,96 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { productService } from 'src/app/admin/services/apis/product.service';
+import { CategoryService } from 'src/app/admin/services/apis/category.service';
+import { ICategory } from 'src/app/admin/interface/category.interface';
+import { IProduct } from 'src/app/admin/interface/product.interface';
+import { CloudinaryService } from 'src/app/admin/common/cloudinary.service';
+import {  ReactiveFormsModule, } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AlertShowcaseComponent } from 'src/app/admin/common/alert.component';
-import { IAlertMessage } from 'src/app/admin/interface/alert-message.interface';
-import { CloudinaryService } from 'src/app/admin/common/cloudinary.service';
-import { CategoryService } from 'src/app/admin/services/apis/category.service';
 
 @Component({
   selector: 'app-add-product',
   imports: [RouterModule, RouterLink, ReactiveFormsModule, CommonModule, AlertShowcaseComponent],
   templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.scss'
+  styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent {
-imageUrl: string = '';
+  formData: FormGroup;
+  imageUrl: string = '';
   imageUploading: boolean = false;
-    alertMessages: IAlertMessage[] = [];
+  alertMessages: any[] = [];
+  categories: ICategory[] = [];
 
   constructor(
-    private CategoryService: CategoryService,
+    private productService: productService,
+    private categoryService: CategoryService,
     private router: Router,
-    private cloudinary: CloudinaryService
-  ) {}
+    private cloudinaryService: CloudinaryService
+  ) {
+    this.formData = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      description: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(0)]),
+      salePrice: new FormControl('', [Validators.required, Validators.min(0)]),
+      status: new FormControl('', [Validators.required]),
+      category_id: new FormControl('', [Validators.required]),
+      longDescription: new FormControl('')
+    });
 
-  formData = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ]),
-    image: new FormControl('', [
-      Validators.required
-    ]),
-    status: new FormControl('', [
-      Validators.required
-    ])
-  });
+    this.getCategories();  // Load categories when component is initialized
+  }
 
-  // Xử lý upload ảnh
+  // Fetch categories from API
+  getCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (res: any) => {
+        this.categories = res?.data ?? res;
+      },
+      error: (err) => {
+        console.error('Error fetching categories:', err);
+      }
+    });
+  }
+
+  // Handle file selection for product image upload
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.imageUploading = true;
       try {
-        const res: any = await this.cloudinary.uploadImage(file).toPromise();
+        const res: any = await this.cloudinaryService.uploadImage(file).toPromise();
         this.imageUrl = res.secure_url;
-        console.log('Uploaded:', this.imageUrl);
         this.imageUploading = false;
       } catch (err) {
-        console.error('Upload thất bại:', err);
+        console.error('Upload failed:', err);
         this.imageUploading = false;
       }
     }
   }
 
-  get name() {
-    return this.formData.get('name');
-  }
-
-  get image() {
-    return this.imageUrl;
-  }
-
-  get status() {
-    return this.formData.get('status');
-  }
-onSubmit(){
-
-}
-  async add() {
-    // Nếu ảnh đang upload thì không cho submit
-    if (this.imageUploading) {
-      this.alertMessages = [{status: 'warning', message: 'Vui lòng đợi tải ảnh lên'}]
+  // Form submission handler
+  onSubmit() {
+    if (this.formData.invalid) {
+      this.alertMessages = [{ status: 'danger', message: 'Vui lòng điền đầy đủ thông tin.' }];
       return;
     }
 
-    const name = this.name?.value;
-    const image = this.imageUrl;
-    const status = this.status?.value;
-    const payload = { name, image, status };
+    // Prepare product data to send to the backend
+    const productData: IProduct = {
+      ...this.formData.value,
+      images: this.imageUrl,
+    };
 
-    this.CategoryService.addCategories(payload).subscribe({
+    this.productService.addProducts(productData).subscribe({
       next: (res: any) => {
-        this.router.navigate(['/ui-components/categories']);
+        this.router.navigate(['/ui-components/products']);
       },
-       error: () => {
-            this.alertMessages = [{status: 'danger', message: 'lỗi'}];
-          }
+      error: (err: any) => {
+        this.alertMessages = [{ status: 'danger', message: 'Thêm sản phẩm thất bại. Vui lòng thử lại.' }];
+        console.error('Error adding product:', err);
+      }
     });
   }
 }

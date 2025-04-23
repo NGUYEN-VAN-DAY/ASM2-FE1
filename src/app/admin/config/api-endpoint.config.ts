@@ -18,7 +18,7 @@ export const API_ENDPOINT = {
     add: '/add',
   },
   product: {
-    base: API_BASE_URL + '/' + 'produts',
+    base: API_BASE_URL + '/' + 'products',
     list: '/list',
     add: '/add',
   }
