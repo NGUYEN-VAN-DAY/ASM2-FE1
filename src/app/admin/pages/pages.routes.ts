@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { StarterComponent } from './starter/starter.component';
 import { NgModule } from '@angular/core';
 import { AddProductComponent } from './ui-components/products/add-product/add-product.component';
+import { EditCategoryComponent } from './ui-components/categories/edit-category/edit-category.component';
 
 
 export const PagesRoutes: Routes = [
@@ -20,4 +21,5 @@ export const PagesRoutes: Routes = [
     path: "add-product",
     component: AddProductComponent
   },
+ 
 ];

@@ -90,8 +90,8 @@
 
 
                                                 <td class="d-flex justify-content-center align-items-center gap-2">
-                                                    <a  routerLink="/ui-components/edit-category"
-                                                        class="btn btn-primary  ">Sửa</a>
+                                                    <a [routerLink]="['/ui-components/edit-category', p.id]" class="btn btn-dark">Sửa</a>
+                                                    <!-- <h1> {{p.id}}</h1> -->
                                                     <button class="btn btn-danger"
                                                         (click)="openDialog(p.id, p.name)">Xóa</button>
 

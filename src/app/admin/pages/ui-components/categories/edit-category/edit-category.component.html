@@ -1,90 +1,67 @@
 <div class="main-panel">
     <ng-alerts [messages]="alertMessages"></ng-alerts>
-
+  
     <div class="content-wrapper">
-        <div class="page-wrapper">
-            <div class="page-breadcrumb">
-                <div class="row">
-                   
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Sửa danh mục</h4>
-                        <div class="ms-auto text-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a routerLink="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item"><a routerLink="/ui-components/categories">Danh sách danh
-                                            mục</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Sửa danh mục</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                              
-                                <form [formGroup]="formData" (ngSubmit)="onSubmit()" method="POST">
-                                    <div class="mb-3">
-                                        <label for="categoryName" class="form-label">Tên danh mục:</label>
-                                        <input formControlName="name" type="text" class="mb-3 form-control">
-                                        <span class="text-danger"
-                                            *ngIf="name!.invalid &&(name!.dirty || name!.touched)">name is
-                                            required</span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoryImage" class="form-label">Ảnh:
-                                            <div class="text-danger" *ngIf="imageUploading">Đang tải ảnh lên...</div>
-
-                                        </label>
-                                        <input formControlName="image" (change)="onFileSelected($event)" type="file"
-                                            class="mb-3 form-control">
-                                        <!-- <input type="file" (change)="onFileSelected($event)" />
-                                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded image" width="300" /> -->
-                                        <!-- <span class="text-danger" *ngIf="image!.invalid &&(image!.dirty || image!.touched)">image is
-                                            required</span> -->
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoryStatus" class="form-label">Trạng thái:</label>
-                                        <select formControlName="status" class="form-control" id="categoryStatus"
-                                            name="categoryStatus">
-
-                                            <option value="0">Ẩn</option>
-                                            <option value="1">Hiển thị</option>
-                                        </select>
-                                        <span class="text-danger"
-                                            *ngIf="status!.invalid &&(status!.dirty || status!.touched)">status is
-                                            required</span>
-                                    </div>
-                                    <!-- <div class="mb-3">
-                                        <label for="categoryType" class="form-label">Loại</label>
-                                        <select class="form-control" id="categoryType" name="categoryType">
-                                            <option value="">Chọn loại</option>
-                                            <option value="iphone">iPhone</option>
-                                            <option value="samsung">Samsung</option>
-                                            <option value="oppo">Oppo</option>
-                                            <option value="xiaomi">Xiaomi</option>
-                                            <option value="vivo">Vivo</option>
-                                            <option value="realme">Realme</option>
-                                        </select>
-                                    </div> -->
-
-                                    <div class="button-group">
-                                        <button type="submit" class="btn btn-success" (click)="add()"
-                                            [disabled]="!formData.valid">Lưu</button>
-
-                                        <a routerLink="/ui-components/categories" class="btn btn-secondary">Hủy</a>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row"></div>
         </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Sửa danh mục</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/ui-components/categories">Danh sách danh mục</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Sửa danh mục</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <form [formGroup]="formData" (ngSubmit)="update()">
+                    <div class="mb-3">
+                      <label for="categoryName" class="form-label">Tên danh mục:</label>
+                      <input formControlName="name" type="text" class="mb-3 form-control">
+                      <span class="text-danger" *ngIf="formData.get('name')?.invalid && (formData.get('name')?.dirty || formData.get('name')?.touched)">
+                        Tên danh mục là bắt buộc
+                      </span>
+                    </div>
+  
+                    <div class="mb-3">
+                      <label for="categoryImage" class="form-label">Ảnh:</label>
+                      <input formControlName="image" type="file" (change)="onFileSelected($event)" class="mb-3 form-control">
+                      <span class="text-danger" *ngIf="formData.get('image')?.invalid && (formData.get('image')?.dirty || formData.get('image')?.touched)">
+                        Ảnh là bắt buộc
+                      </span>
+                      <div *ngIf="imageUrl">
+                        <img [src]="imageUrl" alt="Category Image" class="img-fluid mt-3" style="max-width: 200px;">
+                      </div>
+                    </div>
+  
+                    <div class="mb-3">
+                      <label for="categoryStatus" class="form-label">Trạng thái:</label>
+                      <select formControlName="status" class="form-control">
+                        <option value="0">Ẩn</option>
+                        <option value="1">Hiển thị</option>
+                      </select>
+                    </div>
+  
+                    <div class="button-group">
+                      <button type="submit" class="btn btn-success" [disabled]="formData.invalid">Cập nhật</button>
+                      <a routerLink="/ui-components/categories" class="btn btn-secondary">Hủy</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

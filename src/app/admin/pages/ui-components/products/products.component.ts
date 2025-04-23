@@ -6,6 +6,8 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { ICategory } from 'src/app/admin/interface/category.interface';
 import { CategoryService } from 'src/app/admin/services/apis/category.service';
 import { DeleteCategoryComponent } from '../categories/delete-category/delete-category.component';
+import { IProduct } from 'src/app/admin/interface/product.interface';
+import { productService } from 'src/app/admin/services/apis/product.service';
 
 @Component({
   selector: 'app-products',
@@ -14,17 +16,17 @@ import { DeleteCategoryComponent } from '../categories/delete-category/delete-ca
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-list: ICategory[] = []
+list: IProduct[] = []
   readonly dialog = inject(MatDialog);
 
-  constructor(private categoryService: CategoryService,
+  constructor(private productService: productService,
   ) {
     this.getAll();
 
   }
 
   getAll() {
-    this.categoryService.getCategories().subscribe({
+    this.productService.getProducts().subscribe({
       next: (res: any) => {
         this.list = res?.data ?? res;
         console.log("data nè",this.list);

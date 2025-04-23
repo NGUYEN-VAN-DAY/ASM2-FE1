@@ -69,12 +69,12 @@
                                                     {{p.id}}
                                                 </td>
                                                 <td>
-                                                    {{p.name}}
+                                                    {{p.title}}
                                                 </td>
                                                
                                                 <td>
 
-                                                    <img id="image" [src]="p.image" alt="Ảnh danh mục">
+                                                    <img id="image" [src]="p.images" alt="Ảnh danh mục">
 
 
                                                 </td>
@@ -99,7 +99,7 @@
                                                     <a  routerLink="/ui-components/edit-product"
                                                         class="btn btn-primary  ">Sửa</a>
                                                     <button class="btn btn-danger"
-                                                        (click)="openDialog(p.id, p.name)">Xóa</button>
+                                                        (click)="openDialog(p.id, p.title)">Xóa</button>
 
 
                                                 </td>

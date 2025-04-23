@@ -34,20 +34,20 @@ export const routes: Routes = [
       },
     ],
   },
-  
-  // {
-  //   path: '',
-  //   component: BlankComponent,
-  //   children: [
-  //     {
-  //       path: 'authentication',
-  //       loadChildren: () =>
-  //         import('./admin/pages/authentication/authentication.routes').then(
-  //           (m) => m.AuthenticationRoutes
-  //         ),
-  //     },
-  //   ],
-  // },
+
+  {
+    path: '',
+    component: BlankComponent,
+    children: [
+      {
+        path: 'authentication',
+        loadChildren: () =>
+          import('./admin/pages/authentication/authentication.routes').then(
+            (m) => m.AuthenticationRoutes
+          ),
+      },
+    ],
+  },
   {
     path: '**',
     redirectTo: 'authentication/error',

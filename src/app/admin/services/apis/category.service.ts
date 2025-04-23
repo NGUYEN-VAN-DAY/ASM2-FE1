@@ -9,10 +9,7 @@ import { API_ENDPOINT } from '../../config/api-endpoint.config';
   providedIn: 'root'
 })
 export class CategoryService extends ApiService {
-
-  constructor(
-    protected _http: HttpClient,
-  ) {
+  constructor(protected _http: HttpClient) {
     super(_http);
   }
 
@@ -23,27 +20,45 @@ export class CategoryService extends ApiService {
       : new HttpHeaders();
   }
 
+  // Lấy danh sách tất cả danh mục
   getCategories(): Observable<ICategory[]> {
     const url = API_ENDPOINT.category.base + API_ENDPOINT.category.list;
     return this._http.get<ICategory[]>(url, {
       headers: this.getAuthHeaders(),
-      // withCredentials: true  // nếu dùng session-based
     });
   }
 
+  // Lấy chi tiết danh mục theo ID
+  getCategoryById(id: string | number): Observable<ICategory> {
+    const url = `${API_ENDPOINT.category.base}/${id}`;
+    return this._http.get<ICategory>(url, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  // Thêm danh mục mới
   addCategories(data: any): Observable<ICategory[]> {
     const url = API_ENDPOINT.category.base + API_ENDPOINT.category.add;
     return this._http.post<ICategory[]>(url, data, {
       headers: this.getAuthHeaders(),
-      // withCredentials: true
     });
   }
 
+  // Cập nhật danh mục theo ID
+  updateCategory(id: string | number, data: any): Observable<ICategory> {
+    const url = `${API_ENDPOINT.category.base}/${id}`;
+    console.log("Service data: ", data);  // Kiểm tra dữ liệu cập nhật
+    
+    return this._http.put<ICategory>(url, data, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  // Xóa danh mục theo ID
   deleteCategory(id: number): Observable<any> {
     const url = `${API_ENDPOINT.category.base}/${id}`;
     return this._http.delete(url, {
       headers: this.getAuthHeaders(),
-      // withCredentials: true
     });
   }
 }

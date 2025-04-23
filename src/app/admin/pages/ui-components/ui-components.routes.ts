@@ -52,7 +52,7 @@ export const UiComponentsRoutes: Routes = [
         component: AppTablesComponent,
       },
       {
-        path: 'edit-category',
+        path: 'edit-category/:id',
         component: EditCategoryComponent,
       },
       {
